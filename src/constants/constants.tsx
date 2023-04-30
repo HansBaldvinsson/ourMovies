@@ -8,3 +8,17 @@ export interface MovieObject {
 
 let MovieProgresses: String[] = ['to watch', 'watched'];
 export { MovieProgresses };
+
+export interface CurrentGenre {
+  currentGenre: string;
+  tvShowOrMovie: string;
+}
+
+interface Genres {
+  genre: string;
+  movies: MovieObject[];
+}
+
+export interface AllMovies {
+  allMovies: Genres[];
+}
