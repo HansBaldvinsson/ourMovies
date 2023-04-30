@@ -3,7 +3,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux';
 import { useState, ReactNode, SyntheticEvent } from 'react';
+import { updateCurrentGenre } from '../slices/currentlyGenreSlice';
 
 let genreList: string[] = [
   'Action',
@@ -24,8 +26,14 @@ interface TabPanelProps {
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
+const TabPanel = (props: TabPanelProps) => {
+  const dispatch = useDispatch();
   const { children, value, index, ...other } = props;
+
+  if (value === index) {
+    console.log("MEOW")
+    dispatch(updateCurrentGenre(genreList[index]));
+  }
 
   return (
     <div
@@ -44,7 +52,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: number) {
+const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`
