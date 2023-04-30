@@ -81,6 +81,7 @@ const SubNavBar = () => {
         >
           {genreList.map((genre, index) => (
             <Tab
+              key={index}
               label={genre}
               {...a11yProps(index)}
               sx={{
@@ -94,7 +95,7 @@ const SubNavBar = () => {
         </Tabs>
       </Box>
       {genreList.map((genre, index) => (
-        <TabPanel value={value} index={index}>
+        <TabPanel key={index}value={value} index={index}>
           {genre}
         </TabPanel>
       ))}
