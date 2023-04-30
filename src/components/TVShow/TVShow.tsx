@@ -1,26 +1,33 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
-import { MovieObject } from '../constants/constants';
+import { TVShowObject } from '../../constants/constants';
 
-const Movie = ({ movie }: { movie: MovieObject }) => {
+const TVShow = ({ tvShow }: { tvShow: TVShowObject }) => {
   return (
     <Card>
       <CardMedia>
         <CardContent>
-          <img src={movie.img}></img>
+          <img src={tvShow.img}></img>
           <Typography gutterBottom variant='h5' component='div'>
-            {movie.name}
+            {tvShow.name}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
-            {movie.description}
+            {tvShow.decsription}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
-            {movie.rating}
+            {tvShow.rating}
           </Typography>
+          {tvShow.currentEpisode !== '' ? (
+            <Typography variant='body2' color='text.secondary'>
+              {tvShow.currentEpisode}
+            </Typography>
+          ) : (
+            <></>
+          )}
         </CardContent>
       </CardMedia>
     </Card>
   );
 };
 
-export default Movie;
+export default TVShow;

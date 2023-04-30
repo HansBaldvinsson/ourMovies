@@ -1,10 +1,20 @@
 export interface MovieObject {
-  name: String;
-  img: String;
-  progress: String;
-  rating: String;
-  description: String;
+  name: string;
+  img: string;
+  progress: string;
+  rating: string;
+  description: string;
 }
 
-let MovieProgresses: String[] = ['to watch', 'watched'];
-export { MovieProgresses };
+export interface TVShowObject {
+  name: string;
+  img: string;
+  progress: string;
+  currentEpisode: string;
+  rating: string;
+  decsription: string;
+}
+
+let MovieProgresses: string[] = ['to watch', 'watched'];
+let TVShowProgresses: string[] = ['to watch', 'watching', 'watched'];
+export { MovieProgresses, TVShowProgresses };
