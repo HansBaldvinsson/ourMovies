@@ -31,7 +31,6 @@ const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
   if (value === index) {
-    console.log("MEOW")
     dispatch(updateCurrentGenre(genreList[index]));
   }
 

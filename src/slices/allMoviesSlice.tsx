@@ -5,7 +5,7 @@ const allMovies = createSlice({
     name: 'allMovies',
     initialState: movies,
     reducers: {
-
+        
     }
 })
 
