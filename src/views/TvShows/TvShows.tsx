@@ -10,6 +10,7 @@ const TvShows = () => {
     // let currentGenre: string = useSelector((state: CurrentGenre) => state.currentGenre);
     //
     let movies = useSelector((state: TvShowsState) => state.allMovies);
+    
     return (
         <Box>
             <Typography>

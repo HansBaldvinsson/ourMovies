@@ -1,28 +1,48 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Movie from './Movie';
-import { MovieObject } from '../constants/constants';
+import { MovieObject, Genre } from '../constants/constants';
+import { RootState } from '../store';
+import { useSelector } from 'react-redux';
+
+interface TvShowsState extends RootState {}
+interface CurrentState extends RootState {}
 
 const ProgressBox = ({ progress }: { progress: string }) => {
+  let currentInfo = useSelector((state: CurrentState) => state.currentInfo);
+  let allMovies = useSelector((state: TvShowsState) => state.allMovies);
+
+  let correctGenre = {} as Genre;
+  allMovies.genres.map((genre: Genre) => {
+    if (genre.genre.toLowerCase() === currentInfo.currentGenre.toLowerCase()) {
+      correctGenre = genre;
+    }
+  });
+
   let movies: MovieObject[] = [];
-  let filteredMovies = movies.filter((movie) => movie.progress === progress);
+  if (Object.keys(correctGenre).length !== 0) {
+    if (correctGenre.movies.length !== 0) {
+      movies = correctGenre.movies.filter((movie: MovieObject) => {
+        return movie.progress.toLowerCase() == progress.toLowerCase();
+      });
+    }
+  }
 
   return (
     <Box
       sx={{
         display: 'flex',
+        flexDirection: 'column',
         height: 'auto',
         width: '40%',
         marginLeft: 10,
         marginRight: 10,
         backgroundColor: 'lightGrey',
-        borderRadius: 8
+        borderRadius: 5
       }}
     >
-      <Typography>{progress}</Typography>
-      {filteredMovies.map((movie) => (
-        <Movie movie={movie}></Movie>
-      ))}
+      <Typography sx={{ margin: 2 }}>{progress}</Typography>
+      {movies && movies.map((movie) => <Movie movie={movie}></Movie>)}
     </Box>
   );
 };

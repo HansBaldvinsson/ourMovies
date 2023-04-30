@@ -49,14 +49,14 @@ const TabPanel = (props: TabPanelProps) => {
       )}
     </div>
   );
-}
+};
 
 const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`
   };
-}
+};
 
 const SubNavBar = () => {
   const [value, setValue] = useState(0);
@@ -82,6 +82,7 @@ const SubNavBar = () => {
           {genreList.map((genre, index) => (
             <Tab
               label={genre}
+              key={index}
               {...a11yProps(index)}
               sx={{
                 marginLeft: 2,
@@ -94,7 +95,7 @@ const SubNavBar = () => {
         </Tabs>
       </Box>
       {genreList.map((genre, index) => (
-        <TabPanel value={value} index={index}>
+        <TabPanel value={value} index={index} key={index}>
           {genre}
         </TabPanel>
       ))}

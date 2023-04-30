@@ -15,7 +15,11 @@ export interface TVShowObject {
   decsription: string;
 }
 
-let MovieProgresses: string[] = ['to watch', 'watched'];
-let TVShowProgresses: string[] = ['to watch', 'watching', 'watched'];
-export { MovieProgresses, TVShowProgresses };
+export interface Genre {
+  genre: string;
+  movies: MovieObject[];
+}
 
+let MovieProgresses: string[] = ['To watch', 'Watched'];
+let TVShowProgresses: string[] = ['To watch', 'Watching', 'Watched'];
+export { MovieProgresses, TVShowProgresses };
