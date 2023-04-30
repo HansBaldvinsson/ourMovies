@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
-function App() {
+import SubNavBar from './components/SubNavBar';
+
+const App = () => {
   return (
     <div className='App'>
       <NavBar />
+      <SubNavBar />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
       </p>
@@ -18,6 +21,6 @@ function App() {
       </a>
     </div>
   );
-}
+};
 
 export default App;
