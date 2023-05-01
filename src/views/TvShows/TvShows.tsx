@@ -6,23 +6,19 @@ import { fetchMovies } from '../../actions/fetchMovies';
 
 interface TvShowsState extends RootState {}
 
-
 const TvShows = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    let movies: any = useSelector((state: TvShowsState) => state.allMovies.movies);
-    console.log(movies.genres);
+  const dispatch = useDispatch<AppDispatch>();
+  let movies = useSelector((state: TvShowsState) => state.allMovies.movies);
 
-    useEffect(() => {
-        dispatch(fetchMovies())
-    }, [])
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, []);
 
-    return (
-        <Box>
-            <Typography>
-                TVSHOWS
-            </Typography>
-        </Box>
-    )
-}
+  return (
+    <Box>
+      <Typography>TVSHOWS</Typography>
+    </Box>
+  );
+};
 
 export default TvShows;

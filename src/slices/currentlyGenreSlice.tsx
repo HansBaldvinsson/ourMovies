@@ -1,22 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    currentGenre : '',
-    tvShowOrMovie: ''
+  currentGenre: '',
+  tvShowOrMovie: ''
 };
 
-const currentGenre = createSlice({
-    name: 'currentGenre',
-    initialState,
-    reducers: {
-        updateCurrentGenre: (state, action) => {
-            state.currentGenre = action.payload;
-        },
-        updateTvShowOrMovie: (state, action) => {
-            state.tvShowOrMovie = action.payload;
-        }
+const currentState = createSlice({
+  name: 'currentState',
+  initialState,
+  reducers: {
+    updateCurrentGenre: (state, action) => {
+      state.currentGenre = action.payload;
+    },
+    updateTvShowOrMovie: (state, action) => {
+      state.tvShowOrMovie = action.payload;
     }
-})
+  }
+});
 
-export const {updateCurrentGenre: updateCurrentGenre} = currentGenre.actions
-export default currentGenre.reducer
+export const { updateCurrentGenre: updateCurrentGenre } = currentState.actions;
+export default currentState.reducer;

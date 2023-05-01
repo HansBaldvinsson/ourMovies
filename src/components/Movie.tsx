@@ -1,24 +1,36 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 import { MovieObject } from '../constants/constants';
+import Rating from './Rating';
 
 const Movie = ({ movie }: { movie: MovieObject }) => {
   return (
-    <Card>
-      <CardMedia>
-        <CardContent>
-          <img src={movie.img}></img>
-          <Typography gutterBottom variant='h5' component='div'>
-            {movie.name}
-          </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            {movie.description}
-          </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            {movie.rating}
-          </Typography>
-        </CardContent>
-      </CardMedia>
+    <Card sx={{}}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <CardMedia
+          sx={{
+            width: '30vw',
+            height: '40vh'
+          }}
+          image={movie.img}
+          title='green iguana'
+        />
+      </Box>
+      <CardContent>
+        <Typography gutterBottom variant='h5' component='div'>
+          {movie.name}
+        </Typography>
+        <Rating rating={movie.rating} />
+        <Typography variant='body2' color='text.secondary'>
+          {movie.description}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };

@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useDispatch } from 'react-redux';
-import { useState, ReactNode, SyntheticEvent } from 'react';
+import { useState, ReactNode, SyntheticEvent, useEffect } from 'react';
 import { updateCurrentGenre } from '../slices/currentlyGenreSlice';
 
 let genreList: string[] = [
@@ -30,9 +30,9 @@ const TabPanel = (props: TabPanelProps) => {
   const dispatch = useDispatch();
   const { children, value, index, ...other } = props;
 
-  if (value === index) {
-    dispatch(updateCurrentGenre(genreList[index]));
-  }
+  useEffect(() => {
+    dispatch(updateCurrentGenre(genreList[value]));
+  }, [value]);
 
   return (
     <div
@@ -49,14 +49,14 @@ const TabPanel = (props: TabPanelProps) => {
       )}
     </div>
   );
-}
+};
 
 const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`
   };
-}
+};
 
 const SubNavBar = () => {
   const [value, setValue] = useState(0);
@@ -69,7 +69,6 @@ const SubNavBar = () => {
     <Box sx={{ width: '100%' }}>
       <Box
         sx={{
-          borderBottom: 1,
           borderColor: 'divider'
         }}
       >
@@ -87,7 +86,6 @@ const SubNavBar = () => {
               sx={{
                 marginLeft: 2,
                 marginRight: 2,
-                marginBottom: 0.75,
                 marginTop: 0.75
               }}
             />
@@ -95,9 +93,9 @@ const SubNavBar = () => {
         </Tabs>
       </Box>
       {genreList.map((genre, index) => (
-        <TabPanel key={index}value={value} index={index}>
-          {genre}
-        </TabPanel>
+        <Box key={`box${index}`} sx={{ height: 0, width: 0 }}>
+          <TabPanel key={index} value={value} index={index}></TabPanel>
+        </Box>
       ))}
     </Box>
   );

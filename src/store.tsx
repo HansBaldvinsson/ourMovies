@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import currentGenreReducer from './slices/currentlyGenreSlice';
+import currentInfoReducer from './slices/currentlyGenreSlice';
 import allMoviesReducer from './slices/allMoviesSlice';
 
 const store = configureStore({
-    reducer: {
-        currentGenre: currentGenreReducer,
-        allMovies: allMoviesReducer
-    }
+  reducer: {
+    currentInfo: currentInfoReducer,
+    allMovies: allMoviesReducer
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
