@@ -1,11 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import movies from '../resourses/movies.json'
+import { fetchMovies } from '../actions/fetchMovies';
+
+const initialState = {
+    movies: {}
+}
 
 const allMovies = createSlice({
     name: 'allMovies',
-    initialState: movies,
-    reducers: {
-        
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchMovies.fulfilled, (state, action) => {
+                state.movies = action.payload;
+            })
     }
 })
 
