@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store';
 import { fetchMovies } from '../../actions/fetchMovies';
+import SubNavBar from '../../components/SubNavBar';
 
-interface TvShowsState extends RootState {}
+interface TvShowsState extends RootState { }
 
 const TvShows = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,9 +16,12 @@ const TvShows = () => {
   }, []);
 
   return (
-    <Box>
-      <Typography>TVSHOWS</Typography>
-    </Box>
+    <>
+      <SubNavBar />
+      <Box>
+        <Typography>TVSHOWS</Typography>
+      </Box>
+    </>
   );
 };
 

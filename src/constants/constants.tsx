@@ -1,4 +1,5 @@
 export interface MovieObject {
+  id: string;
   name: string;
   img: string;
   progress: string;

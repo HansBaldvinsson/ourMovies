@@ -14,7 +14,23 @@ const movieService = {
             return data;
         } catch (error) {
             console.log(error);
-            throw new Error('Failed to fetch boss');
+            throw new Error('Failed to fetch movies');
+        }
+    },
+    getMovie: async function (id: string) {
+        try {
+            const response = await fetch(`${baseURL}/movie/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+
+            return data;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Failed to fetch movies');
         }
     },
 }

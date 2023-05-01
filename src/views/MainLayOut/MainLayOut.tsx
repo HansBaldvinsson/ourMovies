@@ -9,7 +9,6 @@ const MainLayOut = () => {
   return (
     <Box>
       <NavBar />
-      <SubNavBar/>
       <Outlet/>
     </Box>
   );
