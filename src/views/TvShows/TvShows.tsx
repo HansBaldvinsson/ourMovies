@@ -16,7 +16,6 @@ const TvShows = () => {
         dispatch(fetchMovies())
     }, [])
 
-    // let movies = useSelector((state: TvShowsState) => state.allMovies);
     return (
         <Box>
             <Typography>
