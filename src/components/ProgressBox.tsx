@@ -34,7 +34,7 @@ const ProgressBox = ({ progress }: { progress: string }) => {
         display: 'flex',
         flexDirection: 'column',
         height: 'auto',
-        width: '40%',
+        width: 'auto',
         marginLeft: 10,
         marginRight: 10,
         backgroundColor: 'lightGrey',
@@ -42,7 +42,10 @@ const ProgressBox = ({ progress }: { progress: string }) => {
       }}
     >
       <Typography sx={{ margin: 2 }}>{progress}</Typography>
-      {movies && movies.map((movie) => <Movie movie={movie}></Movie>)}
+      {movies &&
+        movies.map((movie, index) => (
+          <Movie key={`movie${index}`} movie={movie}></Movie>
+        ))}
     </Box>
   );
 };

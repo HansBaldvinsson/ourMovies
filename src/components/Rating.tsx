@@ -20,8 +20,6 @@ const BasicRating = ({ rating }: { rating: string }) => {
           setValue(newValue);
         }}
       />
-      {/* <Typography component='legend'>No rating given</Typography>
-      <Rating name='no-value' value={null} /> */}
     </Box>
   );
 };

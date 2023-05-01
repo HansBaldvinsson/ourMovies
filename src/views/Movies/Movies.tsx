@@ -4,8 +4,13 @@ import React from 'react';
 
 const Movies = () => {
   return (
-    <Box>
-      <Typography>MOVIES</Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: 3
+      }}
+    >
       <ProgressList material={'movies'} />
     </Box>
   );

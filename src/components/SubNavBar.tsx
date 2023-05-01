@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useDispatch } from 'react-redux';
-import { useState, ReactNode, SyntheticEvent } from 'react';
+import { useState, ReactNode, SyntheticEvent, useEffect } from 'react';
 import { updateCurrentGenre } from '../slices/currentlyGenreSlice';
 
 let genreList: string[] = [
@@ -29,10 +29,15 @@ interface TabPanelProps {
 const TabPanel = (props: TabPanelProps) => {
   const dispatch = useDispatch();
   const { children, value, index, ...other } = props;
+  const [needsUpdate, setNeedsUpdate] = useState(false);
 
-  if (value === index) {
-    dispatch(updateCurrentGenre(genreList[index]));
+  if (value === index && !needsUpdate) {
+    setNeedsUpdate(true);
   }
+
+  useEffect(() => {
+    dispatch(updateCurrentGenre(genreList[index]));
+  }, [needsUpdate]);
 
   return (
     <div
@@ -69,7 +74,6 @@ const SubNavBar = () => {
     <Box sx={{ width: '100%' }}>
       <Box
         sx={{
-          borderBottom: 1,
           borderColor: 'divider'
         }}
       >
@@ -83,12 +87,10 @@ const SubNavBar = () => {
             <Tab
               key={index}
               label={genre}
-              key={index}
               {...a11yProps(index)}
               sx={{
                 marginLeft: 2,
                 marginRight: 2,
-                marginBottom: 0.75,
                 marginTop: 0.75
               }}
             />
@@ -96,9 +98,9 @@ const SubNavBar = () => {
         </Tabs>
       </Box>
       {genreList.map((genre, index) => (
-        <TabPanel key={index} value={value} index={index}>
-          {genre}
-        </TabPanel>
+        <Box sx={{ height: 0, width: 0 }}>
+          <TabPanel key={index} value={value} index={index}></TabPanel>
+        </Box>
       ))}
     </Box>
   );
