@@ -29,15 +29,10 @@ interface TabPanelProps {
 const TabPanel = (props: TabPanelProps) => {
   const dispatch = useDispatch();
   const { children, value, index, ...other } = props;
-  const [needsUpdate, setNeedsUpdate] = useState(false);
-
-  if (value === index && !needsUpdate) {
-    setNeedsUpdate(true);
-  }
 
   useEffect(() => {
-    dispatch(updateCurrentGenre(genreList[index]));
-  }, [needsUpdate]);
+    dispatch(updateCurrentGenre(genreList[value]));
+  }, [value]);
 
   return (
     <div
@@ -98,7 +93,7 @@ const SubNavBar = () => {
         </Tabs>
       </Box>
       {genreList.map((genre, index) => (
-        <Box sx={{ height: 0, width: 0 }}>
+        <Box key={`box${index}`} sx={{ height: 0, width: 0 }}>
           <TabPanel key={index} value={value} index={index}></TabPanel>
         </Box>
       ))}

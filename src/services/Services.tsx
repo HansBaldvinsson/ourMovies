@@ -10,8 +10,6 @@ const movieService = {
                 },
             });
             const data = await response.json();
-            console.log("meow");
-            console.log(data);
 
             return data;
         } catch (error) {

@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import Movie from './Movie';
-import { MovieObject, Genre } from '../constants/constants';
-import { RootState } from '../store';
-import { useSelector } from 'react-redux';
+import { MovieObject, Genre, MoviesObject } from '../constants/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../store';
+import { fetchMovies } from '../actions/fetchMovies';
 
-interface TvShowsState extends RootState {}
+interface MovieState extends RootState {}
 interface CurrentState extends RootState {}
 
 const ProgressBox = ({ progress }: { progress: string }) => {
+  const dispatch = useDispatch<AppDispatch>();
   let currentInfo = useSelector((state: CurrentState) => state.currentInfo);
-  let allMovies = useSelector((state: TvShowsState) => state.allMovies);
+  let allMovies: MoviesObject = useSelector(
+    (state: MovieState) => state.allMovies.movies
+  );
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, []);
 
   let correctGenre = {} as Genre;
-  allMovies.genres.map((genre: Genre) => {
-    if (genre.genre.toLowerCase() === currentInfo.currentGenre.toLowerCase()) {
-      correctGenre = genre;
-    }
-  });
+  if (allMovies.genres !== undefined) {
+    allMovies.genres.map((genre: Genre) => {
+      if (
+        genre.genre.toLowerCase() === currentInfo.currentGenre.toLowerCase()
+      ) {
+        correctGenre = genre;
+      }
+    });
+  }
 
   let movies: MovieObject[] = [];
   if (Object.keys(correctGenre).length !== 0) {
@@ -37,11 +49,22 @@ const ProgressBox = ({ progress }: { progress: string }) => {
         width: 'auto',
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: 'lightGrey',
-        borderRadius: 5
+        backgroundColor: '#EEEEEE',
+        borderRadius: 3,
+        paddingLeft: 1,
+        paddingRight: 1,
+        paddingTop: 2.5,
+        paddingBottom: 2.5
       }}
     >
-      <Typography sx={{ margin: 2 }}>{progress}</Typography>
+      <Typography
+        sx={{
+          marginBottom: 1,
+          marginTop: 1
+        }}
+      >
+        {progress}
+      </Typography>
       {movies &&
         movies.map((movie, index) => (
           <Movie key={`movie${index}`} movie={movie}></Movie>

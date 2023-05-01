@@ -5,12 +5,7 @@ import Rating from './Rating';
 
 const Movie = ({ movie }: { movie: MovieObject }) => {
   return (
-    <Card
-      sx={{
-        marginLeft: 5,
-        marginRight: 5
-      }}
-    >
+    <Card sx={{}}>
       <Box
         sx={{
           display: 'flex',
