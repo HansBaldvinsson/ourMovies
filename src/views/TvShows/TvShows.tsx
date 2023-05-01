@@ -1,9 +1,13 @@
-import { Box } from '@mui/material';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { RootState } from '../../store';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../../store';
+import { fetchMovies } from '../../actions/fetchMovies';
 import ProgressList from '../../components/ProgressList';
 import { updateTvShowOrMovie } from '../../slices/currentlyGenreSlice';
+import SubNavBar from '../../components/SubNavBar';
+
+interface TvShowsState extends RootState {}
 
 const TvShows = () => {
   const dispatch = useDispatch();
@@ -13,15 +17,18 @@ const TvShows = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        marginTop: 3
-      }}
-    >
-      <ProgressList />
-    </Box>
+    <>
+      <SubNavBar />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          marginTop: 3
+        }}
+      >
+        <ProgressList />
+      </Box>
+    </>
   );
 };
 

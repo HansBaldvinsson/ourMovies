@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 import { MovieObject } from '../constants/constants';
 import Rating from './Rating';
+import { Link } from 'react-router-dom';
 
 const Movie = ({ movie }: { movie: MovieObject }) => {
   return (
@@ -13,14 +14,16 @@ const Movie = ({ movie }: { movie: MovieObject }) => {
           justifyContent: 'center'
         }}
       >
-        <CardMedia
-          sx={{
-            width: '30vw',
-            height: '40vh'
-          }}
-          image={movie.img}
-          title='green iguana'
-        />
+        <Link to={`http://localhost:3000/movie/${movie.id}`} style={{textDecoration: 'none'}}>
+          <CardMedia
+            sx={{
+              width: '30vw',
+              height: '40vh'
+            }}
+            image={movie.img}
+            title='green iguana'
+          />
+        </Link>
       </Box>
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>

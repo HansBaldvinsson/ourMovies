@@ -4,14 +4,16 @@ let movies = moviesObj;
 
 const setupRoutes = (router) => {
   router.get('/movies', (req, res) => {
-    return res.json(movies);
+    return res.json(moviesObj);
   });
-  router.get('/movies/:id', (req, res) => {
-    const movie = movies.find((movie) => movie.id == req.params.id);
+  router.get('/movie/:id', (req, res) => {
+    const movie = moviesObj.genres.map((genre) =>
+      genre.movies.find((m) => m.id == req.params.id)
+    );
     if (!movie) {
       return res.sendStatus(404);
     }
-    return res.json(movie);
+    return res.json(movie[0]);
   });
 };
 

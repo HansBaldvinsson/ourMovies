@@ -3,6 +3,7 @@ import ProgressList from '../../components/ProgressList';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTvShowOrMovie } from '../../slices/currentlyGenreSlice';
+import SubNavBar from '../../components/SubNavBar';
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -12,15 +13,18 @@ const Movies = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: 3
-      }}
-    >
-      <ProgressList />
-    </Box>
+    <>
+      <SubNavBar />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: 3
+        }}
+      >
+        <ProgressList />
+      </Box>
+    </>
   );
 };
 
