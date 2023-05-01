@@ -11,6 +11,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import { fetchMovies } from '../actions/fetchMovies';
+import { fetchTvShows } from '../actions/fetchTvShows';
 
 interface MaterialState extends RootState {}
 interface CurrentState extends RootState {}
@@ -20,7 +21,11 @@ const ProgressBox = ({ progress }: { progress: string }) => {
   let currentInfo = useSelector((state: CurrentState) => state.currentInfo);
 
   useEffect(() => {
-    dispatch(fetchMovies());
+    if (currentInfo.tvShowOrMovie.toLowerCase() === 'movies') {
+      dispatch(fetchMovies());
+    } else {
+      dispatch(fetchTvShows());
+    }
   }, []);
 
   let allMaterial: ListObject = useSelector(
