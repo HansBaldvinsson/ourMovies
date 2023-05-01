@@ -2,8 +2,14 @@ import React from 'react';
 import ProgressBox from './ProgressBox';
 import { List } from '@mui/material';
 import { MovieProgresses, TVShowProgresses } from '../constants/constants';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
-const ProgressList = ({ material }: { material: string }) => {
+interface CurrentState extends RootState {}
+
+const ProgressList = () => {
+  let currentInfo = useSelector((state: CurrentState) => state.currentInfo);
+
   return (
     <List
       sx={{
@@ -11,7 +17,7 @@ const ProgressList = ({ material }: { material: string }) => {
         flexDirection: 'row'
       }}
     >
-      {material === 'movies'
+      {currentInfo.tvShowOrMovie.toLowerCase() === 'movies'
         ? MovieProgresses.map((movieProgress: string, index) => (
             <ProgressBox key={index} progress={movieProgress} />
           ))

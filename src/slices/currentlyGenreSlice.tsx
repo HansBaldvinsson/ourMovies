@@ -18,5 +18,8 @@ const currentState = createSlice({
   }
 });
 
-export const { updateCurrentGenre: updateCurrentGenre } = currentState.actions;
+export const {
+  updateCurrentGenre: updateCurrentGenre,
+  updateTvShowOrMovie: updateTvShowOrMovie
+} = currentState.actions;
 export default currentState.reducer;

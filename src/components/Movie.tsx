@@ -26,10 +26,10 @@ const Movie = ({ movie }: { movie: MovieObject }) => {
         <Typography gutterBottom variant='h5' component='div'>
           {movie.name}
         </Typography>
-        <Rating rating={movie.rating} />
         <Typography variant='body2' color='text.secondary'>
           {movie.description}
         </Typography>
+        <Rating rating={movie.rating} />
       </CardContent>
     </Card>
   );

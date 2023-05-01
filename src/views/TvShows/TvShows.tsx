@@ -1,22 +1,26 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
-import { fetchMovies } from '../../actions/fetchMovies';
-
-interface TvShowsState extends RootState {}
+import { Box } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import ProgressList from '../../components/ProgressList';
+import { updateTvShowOrMovie } from '../../slices/currentlyGenreSlice';
 
 const TvShows = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  let movies = useSelector((state: TvShowsState) => state.allMovies.movies);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMovies());
+    dispatch(updateTvShowOrMovie('tvshow'));
   }, []);
 
   return (
-    <Box>
-      <Typography>TVSHOWS</Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        marginTop: 3
+      }}
+    >
+      <ProgressList />
     </Box>
   );
 };

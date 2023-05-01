@@ -15,13 +15,13 @@ export interface TVShowObject {
   decsription: string;
 }
 
-export interface Genre {
-  genre: string;
-  movies: MovieObject[];
+export interface ListObject {
+  genres?: Genre[];
 }
 
-export interface MoviesObject {
-  genres?: Genre[];
+export interface Genre {
+  genre: string;
+  material: MovieObject[] | TVShowObject[];
 }
 
 let MovieProgresses: string[] = ['To watch', 'Watched'];

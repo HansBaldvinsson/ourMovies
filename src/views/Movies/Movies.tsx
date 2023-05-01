@@ -1,8 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import ProgressList from '../../components/ProgressList';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateTvShowOrMovie } from '../../slices/currentlyGenreSlice';
 
 const Movies = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateTvShowOrMovie('movies'));
+  }, []);
+
   return (
     <Box
       sx={{
@@ -11,7 +19,7 @@ const Movies = () => {
         marginTop: 3
       }}
     >
-      <ProgressList material={'movies'} />
+      <ProgressList />
     </Box>
   );
 };
