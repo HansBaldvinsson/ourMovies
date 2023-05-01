@@ -9,8 +9,8 @@ interface TvShowsState extends RootState {}
 
 const TvShows = () => {
     const dispatch = useDispatch<AppDispatch>();
-    let movies = useSelector((state: TvShowsState) => state.allMovies.movies);
-    console.log(movies);
+    let movies: any = useSelector((state: TvShowsState) => state.allMovies.movies);
+    console.log(movies.genres);
 
     useEffect(() => {
         dispatch(fetchMovies())
