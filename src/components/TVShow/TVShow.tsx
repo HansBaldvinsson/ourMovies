@@ -1,10 +1,22 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { TVShowObject } from '../../constants/constants';
 import Rating from '../Rating';
 
-const TVShow = ({ tvShow }: { tvShow: TVShowObject }) => {
+interface CurrentState extends RootState {}
+
+const TVShow = ({
+  tvShow,
+  progress
+}: {
+  tvShow: TVShowObject;
+  progress: string;
+}) => {
+  let currentInfo = useSelector((state: CurrentState) => state.currentInfo);
+
   return (
     <Card sx={{}}>
       <Box
@@ -38,7 +50,12 @@ const TVShow = ({ tvShow }: { tvShow: TVShowObject }) => {
         <Typography variant='body2' color='text.secondary'>
           {tvShow.currentEpisode}
         </Typography>
-        <Rating rating={tvShow.rating} />
+        {parseInt(tvShow.rating) === 0 &&
+        progress.toLowerCase() === 'to watch' ? (
+          <></>
+        ) : (
+          <Rating rating={tvShow.rating} />
+        )}
       </CardContent>
     </Card>
   );

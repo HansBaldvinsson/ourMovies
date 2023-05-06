@@ -95,12 +95,17 @@ const ProgressBox = ({ progress }: { progress: string }) => {
       </Typography>
       {currentInfo.tvShowOrMovie.toLowerCase() === 'movies'
         ? materials.map((movie, index) => (
-            <Movie key={`movie${index}`} movie={movie as MovieObject}></Movie>
+            <Movie
+              key={`movie${index}`}
+              movie={movie as MovieObject}
+              progress={progress}
+            ></Movie>
           ))
         : materials.map((tvShow, index) => (
             <TVShow
               key={`tvshow${index}`}
               tvShow={tvShow as TVShowObject}
+              progress={progress}
             ></TVShow>
           ))}
     </Box>
