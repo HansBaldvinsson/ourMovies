@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:4500/api/';
+const baseURL = 'http://localhost:4500/api';
 
 const TvShowService = {
   getTvShows: async function () {

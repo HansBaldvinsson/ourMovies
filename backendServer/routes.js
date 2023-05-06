@@ -8,8 +8,9 @@ const setupRoutes = (router) => {
   });
   router.get('/movie/:id', (req, res) => {
     const movie = moviesObj.genres.map((genre) =>
-      genre.movies.find((m) => m.id == req.params.id)
+      genre.material.find((m) => m.id == req.params.id)
     );
+    console.log(movie)
     if (!movie) {
       return res.sendStatus(404);
     }
