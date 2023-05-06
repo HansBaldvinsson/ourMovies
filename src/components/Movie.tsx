@@ -4,7 +4,13 @@ import { MovieObject } from '../constants/constants';
 import Rating from './Rating';
 import { Link } from 'react-router-dom';
 
-const Movie = ({ movie }: { movie: MovieObject }) => {
+const Movie = ({
+  movie,
+  progress
+}: {
+  movie: MovieObject;
+  progress: string;
+}) => {
   return (
     <Card sx={{}}>
       <Box
@@ -14,7 +20,10 @@ const Movie = ({ movie }: { movie: MovieObject }) => {
           justifyContent: 'center'
         }}
       >
-        <Link to={`http://localhost:3000/movie/${movie.id}`} style={{textDecoration: 'none'}}>
+        <Link
+          to={`http://localhost:3000/movie/${movie.id}`}
+          style={{ textDecoration: 'none' }}
+        >
           <CardMedia
             sx={{
               width: '30vw',
@@ -32,7 +41,12 @@ const Movie = ({ movie }: { movie: MovieObject }) => {
         <Typography variant='body2' color='text.secondary'>
           {movie.description}
         </Typography>
-        <Rating rating={movie.rating} />
+        {parseInt(movie.rating) === 0 &&
+        progress.toLowerCase() === 'to watch' ? (
+          <></>
+        ) : (
+          <Rating rating={movie.rating} />
+        )}
       </CardContent>
     </Card>
   );

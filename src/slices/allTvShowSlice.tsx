@@ -2,18 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchTvShows } from '../actions/fetchTvShows';
 
 const initialState = {
-  movies: {}
+  tvShows: {}
 };
 
-const allMovies = createSlice({
+const TvShows = createSlice({
   name: 'allTvShows',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchTvShows.fulfilled, (state, action) => {
-      state.movies = action.payload;
+      state.tvShows = action.payload;
     });
   }
 });
 
-export default allMovies.reducer;
+export default TvShows.reducer;

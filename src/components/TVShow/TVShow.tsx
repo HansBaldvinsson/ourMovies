@@ -1,8 +1,22 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { TVShowObject } from '../../constants/constants';
 import Rating from '../Rating';
-const TVShow = ({ tvShow }: { tvShow: TVShowObject }) => {
+
+interface CurrentState extends RootState {}
+
+const TVShow = ({
+  tvShow,
+  progress
+}: {
+  tvShow: TVShowObject;
+  progress: string;
+}) => {
+  let currentInfo = useSelector((state: CurrentState) => state.currentInfo);
+
   return (
     <Card sx={{}}>
       <Box
@@ -12,26 +26,36 @@ const TVShow = ({ tvShow }: { tvShow: TVShowObject }) => {
           justifyContent: 'center'
         }}
       >
-        <CardMedia
-          sx={{
-            width: '30vw',
-            height: '40vh'
-          }}
-          image={tvShow.img}
-          title='green iguana'
-        />
+        <Link
+          to={`http://localhost:3000/tvShow/${tvShow.id}`}
+          style={{ textDecoration: 'none' }}
+        >
+          <CardMedia
+            sx={{
+              width: '30vw',
+              height: '40vh'
+            }}
+            image={tvShow.img}
+            title='green iguana'
+          />
+        </Link>
       </Box>
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {tvShow.name}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {tvShow.decsription}
+          {tvShow.description}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {tvShow.currentEpisode}
         </Typography>
-        <Rating rating={tvShow.rating} />
+        {parseInt(tvShow.rating) === 0 &&
+        progress.toLowerCase() === 'to watch' ? (
+          <></>
+        ) : (
+          <Rating rating={tvShow.rating} />
+        )}
       </CardContent>
     </Card>
   );
