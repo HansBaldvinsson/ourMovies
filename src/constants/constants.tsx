@@ -8,12 +8,13 @@ export interface MovieObject {
 }
 
 export interface TVShowObject {
+  id: string;
   name: string;
   img: string;
   progress: string;
   currentEpisode: string;
   rating: string;
-  decsription: string;
+  description: string;
 }
 
 export interface ListObject {

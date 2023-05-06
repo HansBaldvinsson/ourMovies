@@ -7,8 +7,6 @@ import ProgressList from '../../components/ProgressList';
 import { updateTvShowOrMovie } from '../../slices/currentlyGenreSlice';
 import SubNavBar from '../../components/SubNavBar';
 
-interface TvShowsState extends RootState {}
-
 const TvShows = () => {
   const dispatch = useDispatch();
 

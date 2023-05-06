@@ -20,8 +20,10 @@ const setupRoutes = (router) => {
   router.get('/tvShows', (req, res) => {
     return res.json(tvShowObj);
   });
-  router.get('/tvShows/:id', (req, res) => {
-    const tvShow = tvShowObj.find((tvShow) => tvShow.id == req.params.id);
+  router.get('/tvShow/:id', (req, res) => {
+    const tvShow = tvShowObj.genres.map((genre) =>
+      genre.tvShow.find((t) => t.id == req.params.id)
+    );
     if (!tvShow) {
       return res.sendStatus(404);
     }

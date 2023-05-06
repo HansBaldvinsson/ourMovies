@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentGenre: '',
-  tvShowOrMovie: ''
+  tvShowOrMovie: 'movies'
 };
 
 const currentState = createSlice({

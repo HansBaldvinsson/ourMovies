@@ -28,9 +28,17 @@ const ProgressBox = ({ progress }: { progress: string }) => {
     }
   }, []);
 
-  let allMaterial: ListObject = useSelector(
-    (state: MaterialState) => state.allMovies.movies
+  let allMovies = useSelector((state: MaterialState) => state.allMovies.movies);
+  let allTvShows = useSelector(
+    (state: MaterialState) => state.allTvShows.tvShows
   );
+
+  let allMaterial: ListObject = {};
+  if (currentInfo.tvShowOrMovie.toLowerCase() === 'movies') {
+    allMaterial = allMovies;
+  } else {
+    allMaterial = allTvShows;
+  }
 
   let correctGenre = {} as Genre;
   if (allMaterial.genres !== undefined) {
